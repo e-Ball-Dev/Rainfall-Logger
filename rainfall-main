@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std;
+void highlow(double r[12], string month[12]);
+int main()
+{
+    double amount = 0, average;
+    string month[12] = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+    double rain[12];
+    for (int i = 0; i < 12; i++)
+    {
+        cout << "\nEnter amount of rainfall for " << month[i] << ": ";
+        cin >> rain[i];
+       
+        if (rain[i] <= -1)
+        {
+            cout << "Bone dry. Why are you on the Moon?\n";
+            i--;
+        }
+        else if (rain[i] >= 1000)
+        {
+            cout << "Do you live on Neptune? Try a more earth-like number.\n";
+            i--;
+        }
+        else
+        {
+            amount = amount + rain[i];
+        }
+    }
+    average = amount / 12;
+    cout << "\n\nTotal amount of rainfall this year: " << amount;
+    cout << "\nAverage rainfall this year: " << average;
+    highlow(rain, month);
+    
+    return 0;
+}
+void highlow(double r[12], string month[12])
+{
+    int highest = 0;
+    int lowest = 0;
+
+    for (int i = 1; i < 12; i++)
+    {
+        if (r[i] > r[highest])
+            highest = i;
+
+        if (r[i] < r[lowest])
+            lowest = i;
+    }
+
+    cout << "\n\nHighest rainfall was in " << month[highest]
+         << " with " << r[highest] << " mm.";
+    cout << "\nLowest rainfall was in " << month[lowest]
+         << " with " << r[lowest] << " mm.";
+}
